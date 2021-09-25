@@ -66,7 +66,8 @@ public class PacketNEIPatternRecipe implements IMessage, IMessageHandler<PacketN
             ((ContainerPatternTerm) container).getPatternTerminal().setCraftingRecipe(false);
             message.processRecipeHandler((ContainerPatternTerm) container, message);
         } else if (container instanceof ContainerPatternTermEx && message.output != null){
-            ((ContainerPatternTermEx) container).getPatternTerminal().setInverted(false);
+//            ((ContainerPatternTermEx) container).getPatternTerminal().setCraftingRecipe(false);
+//            ((ContainerPatternTermEx) container).getPatternTerminal().setInverted(false);
             message.processRecipeHandler((ContainerPatternTermEx) container,message);
         }
         return null;

@@ -4,6 +4,9 @@ import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.IRecipeHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import gregtech.common.items.GT_FluidDisplayItem;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -47,20 +50,24 @@ public class GregTechRecipeProcessor implements IRecipeProcessor {
     public List<PositionedStack> getRecipeInput(IRecipeHandler recipe, int recipeIndex, String identifier) {
         if (gtDefaultClz.isInstance(recipe) || gtAssLineClz.isInstance(recipe)) {
             List<PositionedStack> recipeInputs = new ArrayList<>(recipe.getIngredientStacks(recipeIndex));
-            recipeInputs.removeIf(positionedStack -> GT_Utility.getFluidFromDisplayStack(positionedStack.items[0]) != null || positionedStack.item.stackSize == 0);
+            recipeInputs.removeIf(positionedStack -> GT_Utility.getFluidFromDisplayItem(positionedStack.items[0]) != null || positionedStack.item.stackSize == 0);
             return recipeInputs;
         }
         return null;
     }
 
+
     @Override
     public List<PositionedStack> getRecipeOutput(IRecipeHandler recipe, int recipeIndex, String identifier) {
         if (gtDefaultClz.isInstance(recipe) || gtAssLineClz.isInstance(recipe)) {
             List<PositionedStack> recipeOutputs = new ArrayList<>(recipe.getOtherStacks(recipeIndex));
-            recipeOutputs.removeIf(positionedStack -> GT_Utility.getFluidFromDisplayStack(positionedStack.items[0]) != null);
+            recipeOutputs.removeIf(positionedStack -> GT_Utility.getFluidFromDisplayItem(positionedStack.items[0]) != null);
             return recipeOutputs;
         }
         return null;
     }
+
+
+
 
 }
