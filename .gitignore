@@ -8,6 +8,7 @@ build
 run
 minecraft
 eclipse
+out
 .classpath
 .project
 .apt_generated
@@ -20,5 +21,6 @@ eclipse
 *.iws
 *.launch
 .factorypath
+*class
 
 forge*changelog.txt
